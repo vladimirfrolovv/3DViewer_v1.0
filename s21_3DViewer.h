@@ -6,23 +6,24 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct points_struct{
-  double x,y,z;
-} points;
+// typedef struct points_struct{
+  
+// } points;
 
 typedef struct vertex_struct {
-  int minmax_p[2];
-  points *coord;
-  int amount_ver;
+  double x,y,z;
 }vertex;
 
 typedef struct poiligons_struct{
-  int amount_pol;
   int *p;
+  int amount_pol;
 } poligons;
 
 typedef struct exit_struct {
-    vertex *v;
+  int minmax_coor[2];
+  int amount_pol;
+  int amount_ver;
+  vertex *v;
   poligons *p;
 }exit_st;
 
