@@ -34,8 +34,8 @@ typedef struct exit_struct {
   int minmaxZ[2];
   int amount_struct_pol;
   int amount_struct_ver;
-  vertex **v;
-  poligons **p;
+  vertex *v;
+  poligons *p;
 } exit_st;
 
 exit_st s21_parse(char *filename);
