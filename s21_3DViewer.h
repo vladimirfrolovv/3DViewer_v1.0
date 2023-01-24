@@ -37,11 +37,19 @@ typedef struct exit_struct {
   vertex *v;
   poligons *p;
 } exit_st;
-
+//parse
 exit_st s21_parse(char *filename);
 int s21_fill_amount(char *filename, exit_st *st);
 int s21_init_struct(exit_st *st);
 void parse_vertex(vertex *v, char *ptr, exit_st *st);
 int memory_for_pol(char *ptr, poligons *p);
 void parse_poligons(char *ptr, poligons *p);
+
+//afine 
+void setting_to_center(exit_st *st);
+void set_scale(exit_st *st, double scale );
+void rotation_x(vertex *v, double angle, exit_st *st);
+void rotation_y(vertex *v, double angle, exit_st *st);
+void rotation_z(vertex *v, double angle, exit_st *st);
+void move(exit_st *st, double a, char axis);
 #endif  // SRC_S21_3DVIEVER_H_
