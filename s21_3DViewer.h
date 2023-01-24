@@ -41,7 +41,7 @@ typedef struct exit_struct {
 exit_st s21_parse(char *filename);
 int s21_fill_amount(char *filename, exit_st *st);
 int s21_init_struct(exit_st *st);
-void parse_vertex(vertex *v, char *ptr, int vertex_counter);
+void parse_vertex(vertex *v, char *ptr);
 int memory_for_pol(char *ptr, poligons *p);
-
+void parse_poligons(char *ptr, poligons *p);
 #endif  // SRC_S21_3DVIEVER_H_
