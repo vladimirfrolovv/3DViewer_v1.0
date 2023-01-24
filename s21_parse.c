@@ -9,8 +9,9 @@ int main() {
   printf("%lf ", st.v[0].x);
   printf("%lf ", st.v[0].y);
   printf("%lf\n", st.v[0].z);
-  printf("%d", st.p[0].poligon[2]);
-
+  printf("%d\n", st.p[0].poligon[0]);
+  printf("%lf ", st.minmaxX[0]);
+  printf("%lf", st.minmaxX[1]);
   return 0;
 }
 
@@ -19,6 +20,13 @@ exit_st s21_parse(char *filename) {
   int status = 0;
   status = s21_fill_amount(filename, st);
   s21_init_struct(st);
+  //KOSTIIIIIL
+  st->minmaxX[1]=-9999;
+  st->minmaxY[1]=-9999;
+  st->minmaxZ[1]=-9999;
+  st->minmaxX[0]=9999;
+  st->minmaxY[0]=9999;
+  st->minmaxZ[0]=9999;
   ssize_t read = 0;
   char *line = NULL;
   size_t size_line = 0;
@@ -29,7 +37,7 @@ exit_st s21_parse(char *filename) {
   while ((read = getline(&line, &size_line, file)) != -1) {
     ptr = line;
     if (*ptr == 'v') {
-      parse_vertex(&(st->v[vertex_counter]), ptr);
+      parse_vertex(&(st->v[vertex_counter]), ptr,st);
       vertex_counter++;
     } else if (*ptr == 'f') {
       memory_for_pol(ptr, &(st->p[poligons_counter]));
@@ -38,7 +46,6 @@ exit_st s21_parse(char *filename) {
       poligons_counter++;
     }
   }
-  // free(st);
   return *st;
 }
 
@@ -77,22 +84,39 @@ int s21_init_struct(exit_st *st) {
   return status;
 }
 
-void parse_vertex(vertex *v, char *ptr) {
+void parse_vertex(vertex *v, char *ptr, exit_st *st) {
   ptr++;
   if (*ptr == ' ') {
     while (*ptr != '\0') {
-      if (!isdigit(*ptr)) {
+      if (!isdigit(*ptr) && *ptr != '-') {
         ptr++;
       } else {
         v->x = strtod(ptr, &ptr);
+        if(st->minmaxX[0]>v->x){
+          st->minmaxX[0]= v->x;
+          //Может не совсем правильно работать
+        } else if(st->minmaxX[1]<v->x){
+          st->minmaxX[1]= v->x;
+        }
+         
         while (*ptr == ' ') {
           ptr++;
         }
         v->y = strtod(ptr, &ptr);
+        if(st->minmaxY[0]>v->x){
+          st->minmaxY[0]= v->x;
+        } else if(st->minmaxY[1]<v->x){
+          st->minmaxY[1]= v->x;
+        }
         while (*ptr == ' ') {
           ptr++;
         }
         v->z = strtod(ptr, &ptr);
+        if(st->minmaxZ[0]>v->x){
+          st->minmaxZ[0]= v->x;
+        } else if(st->minmaxZ[1]<v->x){
+          st->minmaxZ[1]= v->x;
+        }
       }
     }
   }

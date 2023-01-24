@@ -29,9 +29,9 @@ typedef struct poiligons_struct {
 } poligons;
 
 typedef struct exit_struct {
-  int minmaxX[2];
-  int minmaxY[2];
-  int minmaxZ[2];
+  double minmaxX[2];
+  double minmaxY[2];
+  double minmaxZ[2];
   int amount_struct_pol;
   int amount_struct_ver;
   vertex *v;
@@ -41,7 +41,7 @@ typedef struct exit_struct {
 exit_st s21_parse(char *filename);
 int s21_fill_amount(char *filename, exit_st *st);
 int s21_init_struct(exit_st *st);
-void parse_vertex(vertex *v, char *ptr);
+void parse_vertex(vertex *v, char *ptr, exit_st *st);
 int memory_for_pol(char *ptr, poligons *p);
 void parse_poligons(char *ptr, poligons *p);
 #endif  // SRC_S21_3DVIEVER_H_
