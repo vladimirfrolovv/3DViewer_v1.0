@@ -34,13 +34,13 @@ typedef struct exit_struct {
   int minmaxZ[2];
   int amount_struct_pol;
   int amount_struct_ver;
-  vertex *v;
-  poligons *p;
+  vertex **v;
+  poligons **p;
 } exit_st;
 
-exit_st s21_parse(char *filename, int *status, int *amount_ver,
-                  int *amount_pol);
-int s21_amount_value(char *filename, exit_st *st);
+exit_st s21_parse(char *filename);
+int s21_fill_amount(char *filename, exit_st *st);
 int s21_init_struct(exit_st *st);
+void parse_vertex(vertex *v, char *ptr, int vertex_counter);
 
 #endif  // SRC_S21_3DVIEVER_H_
