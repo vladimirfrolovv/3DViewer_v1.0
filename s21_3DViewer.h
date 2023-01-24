@@ -40,7 +40,7 @@ typedef struct exit_struct {
 
 exit_st s21_parse(char *filename, int *status, int *amount_ver,
                   int *amount_pol);
-int s21_amount_value(char *filename, int *status, exit_st *st);
-int s21_init_struct(exit_st);
+int s21_amount_value(char *filename, exit_st *st);
+int s21_init_struct(exit_st *st);
 
 #endif  // SRC_S21_3DVIEVER_H_
