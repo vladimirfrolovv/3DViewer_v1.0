@@ -24,7 +24,7 @@ typedef struct vertex_struct {
 // ptrofpol[index][ 0 1 2 3 ] = int;
 
 typedef struct poiligons_struct {
-  int *p;
+  int *poligon;
   int amount_pol;
 } poligons;
 
@@ -42,5 +42,6 @@ exit_st s21_parse(char *filename);
 int s21_fill_amount(char *filename, exit_st *st);
 int s21_init_struct(exit_st *st);
 void parse_vertex(vertex *v, char *ptr, int vertex_counter);
+int memory_for_pol(char *ptr, poligons *p);
 
 #endif  // SRC_S21_3DVIEVER_H_

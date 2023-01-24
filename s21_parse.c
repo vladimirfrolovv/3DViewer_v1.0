@@ -5,7 +5,14 @@ int main() {
   int amount_ver = 0;
   int amount_pol = 0;
   exit_st st = {0};
-  s21_parse("test.obj");
+  st = s21_parse("test.obj");
+  printf("%lf ", st.v[0].x);
+  printf("%lf ", st.v[0].y);
+  printf("%lf\n", st.v[0].z);
+  printf("%d", st.p[1].amount_pol);
+  free(st.v);
+  free(st.p);
+  
   return 0;
 }
 
@@ -20,17 +27,19 @@ exit_st s21_parse(char *filename) {
   FILE *file = fopen(filename, "r");
   char *ptr = line;
   int vertex_counter = 0;
+  int poligons_counter = 0;
   while ((read = getline(&line, &size_line, file)) != -1) {
     ptr = line;
     if (*ptr == 'v') {
       parse_vertex(&(st->v[vertex_counter]), ptr, vertex_counter);
       vertex_counter++;
-    } else if(*ptr == 'f'){
-      
+    } else if (*ptr == 'f') {
+      memory_for_pol(ptr, &(st->p[poligons_counter]));
+      poligons_counter++;
+      // ptr = line;
+      // parse_poligons(ptr,st->p);
     }
-  } 
-  printf("%lf", st->v[1].y);
-  free(st);
+  }
   return *st;
 }
 
@@ -59,8 +68,13 @@ int s21_fill_amount(char *filename, exit_st *st) {
 
 int s21_init_struct(exit_st *st) {
   int status = 0;
-  st->p = (poligons *)calloc(st->amount_struct_pol, sizeof(poligons));
-  st->v = (vertex *)calloc(st->amount_struct_ver, sizeof(vertex));
+  if ((st->p = (poligons *)calloc(st->amount_struct_pol, sizeof(poligons))) ==
+      NULL) {
+  }
+  if ((st->v = (vertex *)calloc(st->amount_struct_ver, sizeof(vertex))) ==
+      NULL) {
+    status = 1;
+  }
   return status;
 }
 
@@ -83,4 +97,26 @@ void parse_vertex(vertex *v, char *ptr, int vertex_counter) {
       }
     }
   }
+}
+int memory_for_pol(char *ptr, poligons *p) {
+  int status = 0;
+  ptr++;
+  int amount_pol = 0;
+  while (*ptr != '\0') {
+    if (!isdigit(*ptr)) {
+      ptr++;
+    } else {
+      amount_pol++;
+      while (*ptr != ' ') {
+        ptr++;
+      }
+    }
+  }
+  if ((p->poligon = (int *)calloc(amount_pol, sizeof(int))) == NULL) {
+    status = 1;
+  } else {
+    p->amount_pol= amount_pol;
+  }
+  
+  return status;
 }
