@@ -12,6 +12,7 @@ void Myopengl::initializeGL()
     initializeOpenGLFunctions();
     qColorToRGB(Qt::black,r,g,b);
     glClearColor(r, g, b, a);
+    glEnable(GL_)
 
 }
 void Myopengl::resizeGL(int w, int h)
