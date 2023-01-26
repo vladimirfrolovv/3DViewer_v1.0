@@ -13,3 +13,11 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::on_OpenobjFile_clicked()
+{
+//    exit_st st ={0};
+//   st = s21_parse("test.obj");
+
+}
+

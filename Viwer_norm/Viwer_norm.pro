@@ -11,11 +11,14 @@ CONFIG += c++17
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    myopengl.cpp
+    myopengl.cpp \
+    s21_affine.c \
+    s21_parse.c
 
 HEADERS += \
     mainwindow.h \
-    myopengl.h
+    myopengl.h \
+    s21_3DViewer.h
 
 FORMS += \
     mainwindow.ui
