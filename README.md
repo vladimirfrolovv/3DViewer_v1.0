@@ -19,7 +19,7 @@ Implementation project 3DViewer_v1.0
 
 ## Installation
 
-1. Для cборки проекта, находясь в директории 3DViewerCpp, прописать:
+1. Для cборки проекта, находясь в директории 3DViewer_v1.0, прописать:
 ```sh
 make
 ```
