@@ -6,7 +6,17 @@ OBJS=$(SRCS:.c=.o)
 TESTSFLAGS_MAC= -lcheck 
 # -lpthread -lsubunit -lrt -lm
 LIB_NAME=3d_viewer
+UNAME = $(shell uname)
 
+OPEN :=
+
+ifeq ($(UNAME), Linux)
+	OPEN += cd Qmake && ./Viewer
+endif
+
+ifeq ($(UNAME), Darwin)
+	OPEN += open Qmake/Viewer.app/Contents/MacOS/./Viewer
+endif
 all: install
 
 to_style:
@@ -29,7 +39,7 @@ install:
 	cd Qmake/ && qmake ../Viewer.pro && make 
 	
 open:
-	cd Qmake && ./Viewer
+	$(OPEN)
 
 uninstall:
 	rm -rf Qmake
